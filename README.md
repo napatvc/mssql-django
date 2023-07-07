@@ -1,9 +1,9 @@
 # About This Fork
 
-I just move from `django-pyodbc-azure` which used `datetime2` field
-which `MSSQL-Django` had already move to `datetimeoffset`.
+I just moved from `django-pyodbc-azure` which using `datetime2` field.
+However, `MSSQL-Django` had already moved to `datetimeoffset`.
 
-I didn't want to alter all of my `datetime2` columns to `datetimeoffset` yet.
+I don't want to alter my `datetime2` columns to `datetimeoffset` yet.
 So, I removed `datetimeoffset` support from this fork.
 
 # SQL Server backend for Django
