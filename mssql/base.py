@@ -244,8 +244,9 @@ class DatabaseWrapper(BaseDatabaseWrapper):
                     ops[op] = '%s COLLATE %s' % (sql, collation)
             self.operators.update(ops)
 
-        if (settings.USE_TZ):
-            self.data_types['DateTimeField'] ='datetimeoffset'
+        # TODO not use datetimeoffset
+        # if (settings.USE_TZ):
+        #     self.data_types['DateTimeField'] ='datetimeoffset'
 
     def create_cursor(self, name=None):
         return CursorWrapper(self.connection.cursor(), self)

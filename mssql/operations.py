@@ -118,7 +118,7 @@ class DatabaseOperations(BaseDatabaseOperations):
 
     def convert_datetimefield_value(self, value, expression, connection):
         if value is not None:
-            if settings.USE_TZ and not timezone.is_aware(value):
+            if settings.USE_TZ and timezone.is_naive(value):
                 value = timezone.make_aware(value, self.connection.timezone)
         return value
 
@@ -175,8 +175,8 @@ class DatabaseOperations(BaseDatabaseOperations):
     if DJANGO41:
         def date_trunc_sql(self, lookup_type, sql, params, tzname=None):
             sql, params = self._convert_sql_to_tz(sql, params, tzname)
-            
-            # Python formats year with leading zeroes. This preserves that format for 
+
+            # Python formats year with leading zeroes. This preserves that format for
             # compatibility with SQL Server's date since DATEPART drops the leading zeroes.
             CONVERT_YEAR = 'CONVERT(varchar(4), %s)' % sql
             CONVERT_QUARTER = 'CONVERT(varchar, 1+((DATEPART(quarter, %s)-1)*3))' % sql
@@ -197,8 +197,8 @@ class DatabaseOperations(BaseDatabaseOperations):
     else:
         def date_trunc_sql(self, lookup_type, field_name, tzname=None):
             field_name = self._convert_field_to_tz(field_name, tzname)
-            
-            # Python formats year with leading zeroes. This preserves that format for 
+
+            # Python formats year with leading zeroes. This preserves that format for
             # compatibility with SQL Server's date since DATEPART drops the leading zeroes.
             CONVERT_YEAR = 'CONVERT(varchar(4), %s)' % field_name
             CONVERT_QUARTER = 'CONVERT(varchar, 1+((DATEPART(quarter, %s)-1)*3))' % field_name
