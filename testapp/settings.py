@@ -12,16 +12,17 @@ DATABASES = {
         "ENGINE": "mssql",
         "NAME": "default",
         "USER": "sa",
-        "PASSWORD": "MyPassword42",
+        "PASSWORD": "cnmi2559",
         "HOST": "localhost",
         "PORT": "1433",
         "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", },
+        "TIME_ZONE": "Asia/Bangkok"
     },
     'other': {
         "ENGINE": "mssql",
         "NAME": "other",
         "USER": "sa",
-        "PASSWORD": "MyPassword42",
+        "PASSWORD": "cnmi2559",
         "HOST": "localhost",
         "PORT": "1433",
         "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", },
@@ -95,7 +96,7 @@ PASSWORD_HASHERS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 ENABLE_REGEX_TESTS = False
-USE_TZ = False
+USE_TZ = True
 
 TEST_RUNNER = "testapp.runners.ExcludedTestSuiteRunner"
 EXCLUDED_TESTS = [
